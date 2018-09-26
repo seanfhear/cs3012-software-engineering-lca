@@ -1,6 +1,22 @@
-package main
+package lca
 
-import "testing"
+import (
+	"fmt"
+	"testing"
+)
+
+// Test a valid ancestor
+func TestIsAncestor(t *testing.T) {
+	expected := true
+	actual := IsAncestor(args)
+	if actual != expected {
+		t.Errorf("Test failed, expected: '%t', got: '%t'", expected, actual)
+	}
+}
+
+// Test an invalid ancestor
+func TestIsNotAncestor(t *testing.T) {
+}
 
 // Test a valid LCA is returned
 func TestValidLCA(t *testing.T) {
