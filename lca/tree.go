@@ -3,12 +3,12 @@
 package lca
 
 type TreeNode struct {
-	Val   int
+	Val   rune
 	Left  *TreeNode
 	Right *TreeNode
 }
 
-func NewTreeNode(val int) *TreeNode {
+func NewTreeNode(val rune) *TreeNode {
 	return &TreeNode{
 		Val:val,
 	}
