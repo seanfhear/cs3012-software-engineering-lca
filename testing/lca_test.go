@@ -5,6 +5,8 @@ import (
 	"../lca"
 )
 
+// TODO add code coverage testing
+
 // Test a valid ancestor
 func TestIsAncestor(t *testing.T) {
 	testTree := lca.MakeTree()
@@ -20,6 +22,16 @@ func TestIsNotAncestor(t *testing.T) {
 	testTree := lca.MakeTree()
 	expected := false
 	actual := lca.IsAncestor(testTree['c'], testTree['e'])
+	if actual != expected {
+		t.Errorf("Test failed, expected: '%t', got: '%t'", expected, actual)
+	}
+}
+
+// Test where node a is a descendant of node b
+func TestInvertedAncestor(t *testing.T) {
+	testTree := lca.MakeTree()
+	expected := false
+	actual := lca.IsAncestor(testTree['i'], testTree['a'])
 	if actual != expected {
 		t.Errorf("Test failed, expected: '%t', got: '%t'", expected, actual)
 	}
