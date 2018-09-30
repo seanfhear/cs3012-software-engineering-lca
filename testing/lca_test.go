@@ -44,17 +44,32 @@ func TestIsNotAncestor(t *testing.T) {
 
 // Test a valid LCA is returned
 func TestValidLCA(t *testing.T) {
-
+	testTree := makeTree()
+	expected := testTree['b'].Val
+	actual := lca.LowestCommonAncestor(testTree['a'], testTree['d'], testTree['h']).Val
+	if actual != expected {
+		t.Errorf("Test failed, expected: '%d', got: '%d'", expected, actual)
+	}
 }
 
 // Test when one of the nodes is the LCA
 func TestOneNodeIsLCA(t *testing.T) {
-
+	testTree := makeTree()
+	expected := testTree['b'].Val
+	actual := lca.LowestCommonAncestor(testTree['a'], testTree['b'], testTree['h']).Val
+	if actual != expected {
+		t.Errorf("Test failed, expected: '%d', got: '%d'", expected, actual)
+	}
 }
 
 // Test when both given nodes are the same
 func TestDuplicateNode(t *testing.T) {
-
+	testTree := makeTree()
+	expected := testTree['e'].Val
+	actual := lca.LowestCommonAncestor(testTree['a'], testTree['e'], testTree['e']).Val
+	if actual != expected {
+		t.Errorf("Test failed, expected: '%d', got: '%d'", expected, actual)
+	}
 }
 
 // Test when wrong amount of nodes given

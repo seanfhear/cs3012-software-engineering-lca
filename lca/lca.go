@@ -2,6 +2,7 @@
 
 package lca
 
+// finds lowest common ancestor of two given nodes and returns the LCA as a TreeNode
 func LowestCommonAncestor(root, p, q *TreeNode) *TreeNode {
     if root.Left == nil && root.Right == nil {
         if IsAncestor(root, p) && IsAncestor(root, q) {
@@ -30,26 +31,27 @@ func LowestCommonAncestor(root, p, q *TreeNode) *TreeNode {
     return nil
 }
 
-func IsAncestor(curNode, p *TreeNode) bool {
-    if curNode == p { // we allow a node to be a descendant of itself
+// returns true if ancestor node is a valid ancestor of descendant node
+func IsAncestor(ancestor, descendant *TreeNode) bool {
+    if ancestor == descendant { // we allow a node to be a descendant of itself
         return true
     }
 
     leftRes := false
-    if curNode.Left != nil {
-        if curNode.Left == p {
+    if ancestor.Left != nil {
+        if ancestor.Left == descendant {
             leftRes = true
         } else {
-            leftRes = IsAncestor(curNode.Left, p)
+            leftRes = IsAncestor(ancestor.Left, descendant)
         }
     }
 
     rightRes := false
-    if curNode.Right != nil {
-        if curNode.Right == p {
+    if ancestor.Right != nil {
+        if ancestor.Right == descendant {
             rightRes = true
         } else {
-            rightRes = IsAncestor(curNode.Right, p)
+            rightRes = IsAncestor(ancestor.Right, descendant)
         }
     }
 
