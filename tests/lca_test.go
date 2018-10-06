@@ -1,4 +1,4 @@
-package testing
+package tests
 
 import (
 	"testing"
@@ -65,9 +65,4 @@ func TestDuplicateNode(t *testing.T) {
 	if actual != expected {
 		t.Errorf("Test failed, expected: '%d', got: '%d'", expected, actual)
 	}
-}
-
-// Test invalid parameters
-func TestInvalidParameters(t *testing.T) {
-
 }
