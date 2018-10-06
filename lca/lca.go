@@ -60,7 +60,7 @@ func IsAncestor(ancestor, descendant *TreeNode) bool {
 
 
 // returns a sample tree used for testing
-func MakeTree() map[rune]*TreeNode {
+func MakeBinaryTree() map[rune]*TreeNode {
     nodes := make(map[rune]*TreeNode)
     for r := 'a'; r <= 'i'; r++ {
         nodes[r] = NewTreeNode(r)
