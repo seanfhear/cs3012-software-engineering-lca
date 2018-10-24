@@ -10,6 +10,6 @@ type TreeNode struct {
 
 func NewTreeNode(val rune) *TreeNode {
 	return &TreeNode{
-		Val:val,
+		Val: val,
 	}
 }
