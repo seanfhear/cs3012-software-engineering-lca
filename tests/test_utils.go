@@ -22,6 +22,24 @@ func MakeBinaryTree() map[rune]*lca.TreeNode {
 }
 
 
+// returns a sample binary tree using the graph library
+func MakeBinaryTree2() lca.Graph {
+	nodes := make([]lca.Node, 9)
+	g := lca.New(lca.Undirected)
+	for r := 'a'; r <= 'g'; r++ {
+		nodes[r] = g.MakeNode()
+	}
+	g.MakeEdge(nodes['a'], nodes['b'])
+	g.MakeEdge(nodes['a'], nodes['c'])
+	g.MakeEdge(nodes['b'], nodes['d'])
+	g.MakeEdge(nodes['b'], nodes['e'])
+	g.MakeEdge(nodes['e'], nodes['g'])
+	g.MakeEdge(nodes['e'], nodes['h'])
+	g.MakeEdge(nodes['c'], nodes['f'])
+	g.MakeEdge(nodes['f'], nodes['i'])
+}
+
+
 // returns a sample DAG used for testing
 func MakeDAG() lca.Graph {
 	nodes := make([]lca.Node, 7)
