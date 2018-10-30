@@ -1,75 +1,45 @@
-package dag
+// https://github.com/funkygao/golib/blob/master/dag/dag.go
 
-import (
-	"fmt"
-	"github.com/funkygao/golib/str"
-	"os"
-)
+package lca
 
-type Dag struct {
-	nodes map[string]*Node
+type Graph struct {
+	Nodes map[rune]*Node
 }
 
 type Node struct {
-	name string
-	val  interface{}
+	Name rune
+	Val rune
 
+	seen bool
 	indegree int
-	children []*Node
+	Children []*Node
+	Parents []*Node
 }
 
-func New() *Dag {
-	this := new(Dag)
-	this.nodes = make(map[string]*Node)
+func New() *Graph {
+	this := new(Graph)
+	this.Nodes = make(map[rune]*Node)
 	return this
 }
 
-func (this *Dag) AddVertex(name string, val interface{}) *Node {
-	node := &Node{name: name, val: val}
-	this.nodes[name] = node
+func (this *Graph) AddVertex(name rune, val rune) *Node {
+	node := &Node{Name: name, Val: val}
+	this.Nodes[name] = node
 	return node
 }
 
-func (this *Dag) AddEdge(from, to string) {
-	fromNode := this.nodes[from]
-	toNode := this.nodes[to]
-	fromNode.children = append(fromNode.children, toNode)
+func (this *Graph) AddEdge(from, to rune) {
+	fromNode := this.Nodes[from]
+	toNode := this.Nodes[to]
+	fromNode.Children = append(fromNode.Children, toNode)
+	toNode.Parents = append(toNode.Parents, fromNode)
 	toNode.indegree++
 }
 
-func (this *Dag) MakeDotGraph(fn string) string {
-	file, err := os.OpenFile(fn, os.O_WRONLY|os.O_CREATE, 0644)
-	if err != nil {
-		panic(err)
-	}
-	defer file.Close()
-
-	sb := str.NewStringBuilder()
-	sb.WriteString("digraph depgraph {\n\trankdir=LR;\n")
-	for _, node := range this.nodes {
-		node.dotGraph(sb)
-	}
-	sb.WriteString("}\n")
-	file.WriteString(sb.String())
-	return sb.String()
+func (this *Node) GetChildren() []*Node {
+	return this.Children
 }
 
-func (this *Dag) HasPathTo(that string) bool {
-	return false
-}
-
-func (this *Node) dotGraph(sb *str.StringBuilder) {
-	if len(this.children) == 0 {
-		sb.WriteString(fmt.Sprintf("\t\"%s\";\n", this.name))
-		return
-	}
-
-	for _, child := range this.children {
-		sb.WriteString(fmt.Sprintf(`%s -> %s [label="%v"]`, this.name, child.name, this.val))
-		sb.WriteString("\r\n")
-	}
-}
-
-func (this *Node) Children() []*Node {
-	return this.children
+func (this *Node) GetParents() []*Node {
+	return this.Parents
 }
