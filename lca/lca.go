@@ -3,7 +3,13 @@
 package lca
 
 // finds lowest common ancestor of two given nodes and returns the LCA as a TreeNode
-func LowestCommonAncestor(root, p, q *TreeNode) *TreeNode {
+func LowestCommonAncestor(p, q *Node) *Node {
+	pVector := make(map[int][]Node)
+	distance := 0
+	pVector[distance] = append(pVector[distance], p)
+
+
+
 	if root.Left == nil && root.Right == nil {
 		if IsAncestor(root, p) && IsAncestor(root, q) {
 			return root
@@ -31,8 +37,35 @@ func LowestCommonAncestor(root, p, q *TreeNode) *TreeNode {
 	return nil
 }
 
+func getDistanceVector(a *Node) map[rune][]*Node {
+	aVector := make(map[int][]*Node)
+	distance := 0
+	aVector[distance] = append(aVector[distance], a)
+
+	queue := make([]*Node, 0, len(a.Parents))
+	queue = append(queue, a)
+
+	for i := 0; i < len(queue); i++ {
+		node := queue[i]
+
+
+
+		node.seen = true
+		for _, p := range node.Parents {
+			if !p.seen {
+				p.seen = true
+				queue = append(queue, p)
+			}
+		}
+	}
+	finishList := make([]*Node, 0, len(queue))
+	for i := range queue {
+		finishList = append(finishList, queue[i])
+	}
+}
+
 // returns true if ancestor node is a valid ancestor of descendant node
-func IsAncestor(ancestor, descendant *TreeNode) bool {
+func IsAncestor(ancestor, descendant *Node) bool {
 	if ancestor == descendant { // we allow a node to be a descendant of itself
 		return true
 	}
