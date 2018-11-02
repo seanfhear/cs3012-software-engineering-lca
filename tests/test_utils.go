@@ -2,7 +2,7 @@ package tests
 
 import (
 	"../lca"
-	)
+)
 
 // returns a sample tree used for testing
 func MakeBinaryTree() map[rune]*lca.TreeNode {
@@ -23,23 +23,24 @@ func MakeBinaryTree() map[rune]*lca.TreeNode {
 
 
 // returns a sample binary tree using the graph library
-func MakeBinaryTree2() lca.Graph {
-	nodes := make([]lca.Node, 9)
-	g := lca.New(lca.Undirected)
-	for r := 'a'; r <= 'g'; r++ {
-		nodes[r] = g.MakeNode()
+func MakeBinaryTree2() *lca.Graph {
+	g := lca.New()
+	for r := 'a'; r <= 'i'; r++ {
+		g.AddVertex(r, r)
 	}
-	g.MakeEdge(nodes['a'], nodes['b'])
-	g.MakeEdge(nodes['a'], nodes['c'])
-	g.MakeEdge(nodes['b'], nodes['d'])
-	g.MakeEdge(nodes['b'], nodes['e'])
-	g.MakeEdge(nodes['e'], nodes['g'])
-	g.MakeEdge(nodes['e'], nodes['h'])
-	g.MakeEdge(nodes['c'], nodes['f'])
-	g.MakeEdge(nodes['f'], nodes['i'])
+	g.AddEdge('a', 'b')
+	g.AddEdge('a', 'c')
+	g.AddEdge('b', 'd')
+	g.AddEdge('b', 'e')
+	g.AddEdge('e', 'g')
+	g.AddEdge('e', 'h')
+	g.AddEdge('c', 'f')
+	g.AddEdge('f', 'i')
+
+	return g
 }
 
-
+/*
 // returns a sample DAG used for testing
 func MakeDAG() lca.Graph {
 	nodes := make([]lca.Node, 7)
@@ -55,5 +56,9 @@ func MakeDAG() lca.Graph {
 	g.MakeEdge(nodes['d'], nodes['e'])
 	g.MakeEdge(nodes['e'], nodes['f'])
 	g.MakeEdge(nodes['g'], nodes['d'])
+
+	fmt.Println(nodes['a'])
+
 	return g
 }
+*/

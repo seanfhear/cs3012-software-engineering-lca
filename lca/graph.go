@@ -10,7 +10,7 @@ type Node struct {
 	Name rune
 	Val rune
 
-	seen bool
+	Seen bool
 	indegree int
 	Children []*Node
 	Parents []*Node
