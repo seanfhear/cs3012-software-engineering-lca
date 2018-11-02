@@ -7,41 +7,11 @@ import (
 
 // TODO add code coverage testing
 
-// Test a valid ancestor
-func TestBinaryIsAncestor(t *testing.T) {
-	testTree := MakeBinaryTree()
-	expected := true
-	actual := lca.IsAncestor(testTree['a'], testTree['i'])
-	if actual != expected {
-		t.Errorf("Test failed, expected: '%t', got: '%t'", expected, actual)
-	}
-}
-
-// Test an invalid ancestor
-func TestBinaryIsNotAncestor(t *testing.T) {
-	testTree := MakeBinaryTree()
-	expected := false
-	actual := lca.IsAncestor(testTree['c'], testTree['e'])
-	if actual != expected {
-		t.Errorf("Test failed, expected: '%t', got: '%t'", expected, actual)
-	}
-}
-
-// Test where node a is a descendant of node b
-func TestBinaryInvertedAncestor(t *testing.T) {
-	testTree := MakeBinaryTree()
-	expected := false
-	actual := lca.IsAncestor(testTree['i'], testTree['a'])
-	if actual != expected {
-		t.Errorf("Test failed, expected: '%t', got: '%t'", expected, actual)
-	}
-}
-
 // Test a valid LCA is returned
 func TestBinaryValidLCA(t *testing.T) {
 	testTree := MakeBinaryTree()
-	expected := testTree['b'].Val
-	actual := lca.LowestCommonAncestor(testTree['a'], testTree['d'], testTree['h']).Val
+	expected := testTree.Nodes['b'].Val
+	actual := lca.GetLowestCommonAncestor(testTree, testTree.Nodes['d'], testTree.Nodes['h']).Val
 	if actual != expected {
 		t.Errorf("Test failed, expected: '%d', got: '%d'", expected, actual)
 	}
@@ -50,8 +20,8 @@ func TestBinaryValidLCA(t *testing.T) {
 // Test when one of the nodes is the LCA
 func TestBinaryOneNodeIsLCA(t *testing.T) {
 	testTree := MakeBinaryTree()
-	expected := testTree['b'].Val
-	actual := lca.LowestCommonAncestor(testTree['a'], testTree['b'], testTree['h']).Val
+	expected := testTree.Nodes['b'].Val
+	actual := lca.GetLowestCommonAncestor(testTree, testTree.Nodes['a'], testTree.Nodes['b']).Val
 	if actual != expected {
 		t.Errorf("Test failed, expected: '%d', got: '%d'", expected, actual)
 	}
@@ -60,42 +30,14 @@ func TestBinaryOneNodeIsLCA(t *testing.T) {
 // Test when both given nodes are the same
 func TestBinaryDuplicateNode(t *testing.T) {
 	testTree := MakeBinaryTree()
-	expected := testTree['e'].Val
-	actual := lca.LowestCommonAncestor(testTree['a'], testTree['e'], testTree['e']).Val
+	expected := testTree.Nodes['e'].Val
+	actual := lca.GetLowestCommonAncestor(testTree, testTree.Nodes['a'], testTree.Nodes['e']).Val
 	if actual != expected {
 		t.Errorf("Test failed, expected: '%d', got: '%d'", expected, actual)
 	}
 }
 
-// Test a valid ancestor
-func TestDAGIsAncestor(t *testing.T) {
-	testDAG := MakeDAG()
-	expected := true
-	actual := lca.IsAncestor(testDAG['a'], testDAG['i'])
-	if actual != expected {
-		t.Errorf("Test failed, expected: '%t', got: '%t'", expected, actual)
-	}
-}
-
-// Test an invalid ancestor
-func TestDAGIsNotAncestor(t *testing.T) {
-	testDAG := MakeDAG()
-	expected := false
-	actual := lca.IsAncestor(testDAG['c'], testDAG['e'])
-	if actual != expected {
-		t.Errorf("Test failed, expected: '%t', got: '%t'", expected, actual)
-	}
-}
-
-// Test where node a is a descendant of node b
-func TestDAGInvertedAncestor(t *testing.T) {
-	testDAG := MakeDAG()
-	expected := false
-	actual := lca.IsAncestor(testDAG['i'], testDAG['a'])
-	if actual != expected {
-		t.Errorf("Test failed, expected: '%t', got: '%t'", expected, actual)
-	}
-}
+/*
 
 // Test a valid LCA is returned
 func TestDAGValidLCA(t *testing.T) {
@@ -126,3 +68,4 @@ func TestDAGDuplicateNode(t *testing.T) {
 		t.Errorf("Test failed, expected: '%d', got: '%d'", expected, actual)
 	}
 }
+*/
