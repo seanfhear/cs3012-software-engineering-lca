@@ -1,4 +1,4 @@
-// https://github.com/funkygao/golib/blob/master/dag/dag.go
+// based on https://github.com/funkygao/golib/blob/master/dag/dag.go
 
 package lca
 

@@ -1,8 +1,6 @@
 package tests
 
-import (
-	"../lca"
-)
+import "../lca"
 
 // returns a sample binary tree using the graph library
 func MakeBinaryTree() *lca.Graph {
