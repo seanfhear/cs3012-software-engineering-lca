@@ -21,7 +21,7 @@ func TestBinaryValidLCA(t *testing.T) {
 func TestBinaryOneNodeIsLCA(t *testing.T) {
 	testTree := MakeBinaryTree()
 	expected := testTree.Nodes['b'].Val
-	actual := lca.GetLowestCommonAncestor(testTree, testTree.Nodes['a'], testTree.Nodes['b']).Val
+	actual := lca.GetLowestCommonAncestor(testTree, testTree.Nodes['b'], testTree.Nodes['h']).Val
 	if actual != expected {
 		t.Errorf("Test failed, expected: '%d', got: '%d'", expected, actual)
 	}
@@ -31,7 +31,7 @@ func TestBinaryOneNodeIsLCA(t *testing.T) {
 func TestBinaryDuplicateNode(t *testing.T) {
 	testTree := MakeBinaryTree()
 	expected := testTree.Nodes['e'].Val
-	actual := lca.GetLowestCommonAncestor(testTree, testTree.Nodes['a'], testTree.Nodes['e']).Val
+	actual := lca.GetLowestCommonAncestor(testTree, testTree.Nodes['e'], testTree.Nodes['e']).Val
 	if actual != expected {
 		t.Errorf("Test failed, expected: '%d', got: '%d'", expected, actual)
 	}
