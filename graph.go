@@ -11,7 +11,6 @@ type Node struct {
 	Val  rune
 
 	Seen     bool
-	Children []*Node
 	Parents  []*Node
 }
 
@@ -30,14 +29,5 @@ func (this *Graph) AddVertex(name rune, val rune) *Node {
 func (this *Graph) AddEdge(from, to rune) {
 	fromNode := this.Nodes[from]
 	toNode := this.Nodes[to]
-	fromNode.Children = append(fromNode.Children, toNode)
 	toNode.Parents = append(toNode.Parents, fromNode)
-}
-
-func (this *Node) GetChildren() []*Node {
-	return this.Children
-}
-
-func (this *Node) GetParents() []*Node {
-	return this.Parents
 }

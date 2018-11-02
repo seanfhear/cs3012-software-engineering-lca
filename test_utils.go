@@ -1,10 +1,8 @@
-package tests
-
-import "../lca"
+package lca
 
 // returns a sample binary tree using the graph library
-func MakeBinaryTree() *lca.Graph {
-	g := lca.New()
+func MakeBinaryTree() *Graph {
+	g := New()
 	for r := 'a'; r <= 'i'; r++ {
 		g.AddVertex(r, r)
 	}
@@ -21,8 +19,8 @@ func MakeBinaryTree() *lca.Graph {
 }
 
 // returns a sample DAG used for testing
-func MakeDAG() *lca.Graph {
-	g := lca.New()
+func MakeDAG() *Graph {
+	g := New()
 	for r := 'a'; r <= 'g'; r++ {
 		g.AddVertex(r, r)
 	}
