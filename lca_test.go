@@ -2,8 +2,6 @@ package lca
 
 import "testing"
 
-// TODO add code coverage testing
-
 // Test a valid LCA is returned
 func TestBinaryValidLCA(t *testing.T) {
 	testTree := MakeBinaryTree()
