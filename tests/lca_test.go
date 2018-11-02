@@ -66,3 +66,13 @@ func TestDAGDuplicateNode(t *testing.T) {
 		t.Errorf("Test failed, expected: '%d', got: '%d'", expected, actual)
 	}
 }
+
+//Test when no common ancestor
+func TestDAGNoCommonAncestor(t *testing.T) {
+	testDAG := MakeDAG()
+	var expected *lca.Node = nil
+	actual := lca.GetLowestCommonAncestor(testDAG, testDAG.Nodes['g'], testDAG.Nodes['a'])
+	if actual != expected {
+		t.Errorf("Test failed, expected: '%v', got: '%v'", expected, actual)
+	}
+}

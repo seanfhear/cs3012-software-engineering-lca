@@ -11,7 +11,6 @@ type Node struct {
 	Val  rune
 
 	Seen     bool
-	indegree int
 	Children []*Node
 	Parents  []*Node
 }
@@ -33,7 +32,6 @@ func (this *Graph) AddEdge(from, to rune) {
 	toNode := this.Nodes[to]
 	fromNode.Children = append(fromNode.Children, toNode)
 	toNode.Parents = append(toNode.Parents, fromNode)
-	toNode.indegree++
 }
 
 func (this *Node) GetChildren() []*Node {
