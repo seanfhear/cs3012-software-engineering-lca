@@ -8,12 +8,12 @@ type Graph struct {
 
 type Node struct {
 	Name rune
-	Val rune
+	Val  rune
 
-	Seen bool
+	Seen     bool
 	indegree int
 	Children []*Node
-	Parents []*Node
+	Parents  []*Node
 }
 
 func New() *Graph {
