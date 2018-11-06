@@ -1,12 +1,15 @@
-package lca
+package tests
 
-import "testing"
+import (
+	"../lca"
+	"testing"
+)
 
 // Test a valid LCA is returned
 func TestBinaryValidLCA(t *testing.T) {
 	testTree := MakeBinaryTree()
 	expected := testTree.Nodes['b'].Val
-	actual := GetLowestCommonAncestor(testTree, testTree.Nodes['d'], testTree.Nodes['h']).Val
+	actual := lca.GetLowestCommonAncestor(testTree, testTree.Nodes['d'], testTree.Nodes['h']).Val
 	if actual != expected {
 		t.Errorf("Test failed, expected: '%d', got: '%d'", expected, actual)
 	}
@@ -16,7 +19,7 @@ func TestBinaryValidLCA(t *testing.T) {
 func TestBinaryOneNodeIsLCA(t *testing.T) {
 	testTree := MakeBinaryTree()
 	expected := testTree.Nodes['b'].Val
-	actual := GetLowestCommonAncestor(testTree, testTree.Nodes['b'], testTree.Nodes['h']).Val
+	actual := lca.GetLowestCommonAncestor(testTree, testTree.Nodes['b'], testTree.Nodes['h']).Val
 	if actual != expected {
 		t.Errorf("Test failed, expected: '%d', got: '%d'", expected, actual)
 	}
@@ -26,7 +29,7 @@ func TestBinaryOneNodeIsLCA(t *testing.T) {
 func TestBinaryDuplicateNode(t *testing.T) {
 	testTree := MakeBinaryTree()
 	expected := testTree.Nodes['e'].Val
-	actual := GetLowestCommonAncestor(testTree, testTree.Nodes['e'], testTree.Nodes['e']).Val
+	actual := lca.GetLowestCommonAncestor(testTree, testTree.Nodes['e'], testTree.Nodes['e']).Val
 	if actual != expected {
 		t.Errorf("Test failed, expected: '%d', got: '%d'", expected, actual)
 	}
@@ -36,7 +39,7 @@ func TestBinaryDuplicateNode(t *testing.T) {
 func TestDAGValidLCA(t *testing.T) {
 	testDAG := MakeDAG()
 	expected := testDAG.Nodes['b'].Val
-	actual := GetLowestCommonAncestor(testDAG, testDAG.Nodes['d'], testDAG.Nodes['c']).Val
+	actual := lca.GetLowestCommonAncestor(testDAG, testDAG.Nodes['d'], testDAG.Nodes['c']).Val
 	if actual != expected {
 		t.Errorf("Test failed, expected: '%d', got: '%d'", expected, actual)
 	}
@@ -46,7 +49,7 @@ func TestDAGValidLCA(t *testing.T) {
 func TestDAGOneNodeIsLCA(t *testing.T) {
 	testDAG := MakeDAG()
 	expected := testDAG.Nodes['b'].Val
-	actual := GetLowestCommonAncestor(testDAG, testDAG.Nodes['b'], testDAG.Nodes['e']).Val
+	actual := lca.GetLowestCommonAncestor(testDAG, testDAG.Nodes['b'], testDAG.Nodes['e']).Val
 	if actual != expected {
 		t.Errorf("Test failed, expected: '%d', got: '%d'", expected, actual)
 	}
@@ -56,7 +59,7 @@ func TestDAGOneNodeIsLCA(t *testing.T) {
 func TestDAGDuplicateNode(t *testing.T) {
 	testDAG := MakeDAG()
 	expected := testDAG.Nodes['e'].Val
-	actual := GetLowestCommonAncestor(testDAG, testDAG.Nodes['e'], testDAG.Nodes['e']).Val
+	actual := lca.GetLowestCommonAncestor(testDAG, testDAG.Nodes['e'], testDAG.Nodes['e']).Val
 	if actual != expected {
 		t.Errorf("Test failed, expected: '%d', got: '%d'", expected, actual)
 	}
@@ -65,8 +68,8 @@ func TestDAGDuplicateNode(t *testing.T) {
 //Test when no common ancestor
 func TestDAGNoCommonAncestor(t *testing.T) {
 	testDAG := MakeDAG()
-	var expected *Node = nil
-	actual := GetLowestCommonAncestor(testDAG, testDAG.Nodes['g'], testDAG.Nodes['a'])
+	var expected *lca.Node = nil
+	actual := lca.GetLowestCommonAncestor(testDAG, testDAG.Nodes['g'], testDAG.Nodes['a'])
 	if actual != expected {
 		t.Errorf("Test failed, expected: '%v', got: '%v'", expected, actual)
 	}

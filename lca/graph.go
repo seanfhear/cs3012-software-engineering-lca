@@ -10,8 +10,8 @@ type Node struct {
 	Name rune
 	Val  rune
 
-	Seen     bool
-	Parents  []*Node
+	Seen    bool
+	Parents []*Node
 }
 
 func New() *Graph {
