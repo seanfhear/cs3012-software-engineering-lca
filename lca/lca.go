@@ -20,7 +20,7 @@ func GetLowestCommonAncestor(g *Graph, p, q *Node) *Node {
 				lowestDistance = distance
 				first = false
 			}
-			if distance <= lowestDistance {
+			if distance < lowestDistance {
 				lowestCommonAncestor = k
 				lowestDistance = distance
 			}
@@ -44,9 +44,7 @@ func getDistanceVector(distance int, a *Node, aVector map[*Node]int) {
 	a.Seen = true
 	for _, p := range a.Parents {
 		if !p.Seen {
-			distance += 1
-			getDistanceVector(distance, p, aVector)
-			distance -= 1
+			getDistanceVector(distance+1, p, aVector)
 		}
 	}
 	aVector[a] = distance
